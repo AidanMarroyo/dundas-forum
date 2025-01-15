@@ -1,4 +1,6 @@
 import { AppSidebar } from '@/components/app-sidebar';
+import PostEditor from '@/components/posts/editor/PostEditor';
+import TrendSidebar from '@/components/TrendSidebar';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,6 +15,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function Page() {
   return (
@@ -38,14 +41,21 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
-        <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
-          <div className='grid auto-rows-min gap-4 md:grid-cols-3'>
-            <div className='aspect-video rounded-xl bg-muted/50' />
-            <div className='aspect-video rounded-xl bg-muted/50' />
-            <div className='aspect-video rounded-xl bg-muted/50' />
+        <main className='flex w-full min-w-0 gap-10 justify-between'>
+          <div className='ml-40'></div>
+          <div className=' w-1/2 min-w-0 space-y-5'>
+            <PostEditor />
+            <Tabs defaultValue='community'>
+              <TabsList>
+                <TabsTrigger value='news'>News</TabsTrigger>
+                <TabsTrigger value='community'>Community</TabsTrigger>
+              </TabsList>
+              <TabsContent value='news'>News</TabsContent>
+              <TabsContent value='community'>Community</TabsContent>
+            </Tabs>
           </div>
-          <div className='min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min' />
-        </div>
+          <TrendSidebar />
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );
